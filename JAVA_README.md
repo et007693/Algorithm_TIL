@@ -2,6 +2,11 @@ toCharArray()
 charAt()
 
 String.valueof(num)
+Arrays.asList(arr)
+
+List<integer> num = new ArrayList<>();
+int[] num = {}
+
 num += n - '0'
 
 ## 입력
