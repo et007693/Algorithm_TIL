@@ -1,0 +1,17 @@
+SELECT
+FROM
+WHERE
+ORDER BY
+GROUP BY
+LIMIT : 갯수
+LEFT(3)
+LIKE
+LOWER
+DATE
+CONCAT
+
+CASE
+WHEN -- THEN RESULT1
+ELSE RESULT2
+
+COALESCE(name, 'No name'): name 값이 NULL이면 "No name"으로 대체합니다.
