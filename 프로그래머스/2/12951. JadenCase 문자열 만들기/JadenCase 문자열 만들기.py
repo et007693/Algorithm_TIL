@@ -1,14 +1,14 @@
 def solution(s):
     result = ''
-    capitalize = True
+    first = True
 
     for ch in s:
         if ch == ' ':
             result += ch
-            capitalize = True
-        elif capitalize:
+            first = True
+        elif first:
             result += ch.upper()
-            capitalize = False
+            first = False
         else:
             result += ch.lower()
     
