@@ -1,12 +1,17 @@
 def solution(bandage, health, attacks):
-    hp = health
-    start = 1
-    for i, j in attacks:
-        hp += ((i - start) // bandage[0]) * bandage[2] + (i - start) * bandage[1]
-        start = i + 1
-        if hp >= health:
-            hp = health
-        hp -= j
-        if hp <= 0:
-            return -1
-    return hp
+    m_health = health
+    start = 0
+    
+    for a_time, damage in attacks:
+        sc = a_time - start - 1
+        start = a_time
+        health = min(m_health, (sc*bandage[1] + ((sc//bandage[0]) * bandage[2]))+health)
+        health -= damage
+        
+        if health <= 0:
+            break
+        
+    if health > 0:
+        return health
+    else:
+        return -1
