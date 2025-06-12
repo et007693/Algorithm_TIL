@@ -1,14 +1,14 @@
-from collections import Counter
-
 def solution(k, tangerine):
     answer = 0
-    cnt = 0
+    sum_ = 0
+    l = [0] * max(tangerine)
     
-    tangerine_dict = Counter(tangerine)
-    tangerine = sorted(tangerine_dict.items(), key=lambda x: x[1], reverse=True)
+    for t in tangerine:
+        l[t-1] += 1
+    l.sort(reverse = True)
     
-    while cnt < k:
-        cnt += tangerine[answer][1]
+    while sum_ < k:
+        sum_ += l[answer]
         answer += 1
     
     return answer
