@@ -1,3 +1,31 @@
+array 길이는 length, arraylist 길이는 size
+arraylist 마지막 요소 삭제는 removeLast, 인덱싱은 getLast
+string 동일 여부 판별은 eqauls, == 아님
+
+숫자를 배열로 전환하는 방법
+
+1.  숫자를 문자열로 변환하고, 문자열을 split("")으로 분리하기
+    String[] stringArray = String.valueOf(number).split("");
+2.  숫자를 문자 배열로 직접 변환하기
+    char[] charArray = String.valueOf(number).toCharArray();
+
+ArrayList에 값을 바로 넣어주려면, Arrays.asList(1, 2, 3, 4)
+
+## 문제 풀이
+
+배열 내용 출력
+
+### String
+
+1.  방법 1
+    for (String s : string) {
+    System.out.println(w);
+    }
+2.  방법 2
+    System.out.print(Arrays.toArray(string))
+
+### 문자로 타입 변경
+
 toCharArray()
 charAt()
 
@@ -11,19 +39,51 @@ num += n - '0'
 
 ## 입력
 
-1. Scanner
+1. Scanner - 간단한 문제에 적합합
 
-   - 한 줄에 하나씩 입력
-     Scanner sc = New Scanner(System.in)
-     int i = sc.nextInt()
-     String s = sc.next()
+```
+import java.util.Scanner;
 
-   - 한 줄 입력 받아서 쪼개기
-     String line = sc.nextLine()
-     String[] arr = line.split(" ")
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Scanner 객체 생성
 
-2. BufferdReader
-   BufferdReader br = new BufferdReader(new )
+        System.out.print("이름을 입력하세요: ");
+        String name = scanner.nextLine(); // 한 줄 전체 입력 받기
+
+        System.out.println("안녕하세요, " + name + "님!");
+    }
+}
+```
+
+- 한 줄에 하나씩 입력
+  int i = sc.nextInt()
+  String s = sc.next()
+
+- 한 줄 입력 받아서 쪼개기
+  String line = sc.nextLine()
+  String[] arr = line.split(" ")
+
+2. BufferdReader + StringTokenizer - 입력이 많은 문제
+
+```
+import java.io.*;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String line = br.readLine();                  // 한 줄 입력
+        StringTokenizer st = new StringTokenizer(line); // 공백 기준으로 분리
+
+        int a = Integer.parseInt(st.nextToken());     // 첫 번째 정수
+        int b = Integer.parseInt(st.nextToken());     // 두 번째 정수
+
+        System.out.println(a + b);                    // 출력
+    }
+}
+```
 
 ## 배열
 
@@ -147,3 +207,7 @@ num += n - '0'
    values : 맵의 모든 value 값 반환
 
 7. Set
+
+```
+
+```
