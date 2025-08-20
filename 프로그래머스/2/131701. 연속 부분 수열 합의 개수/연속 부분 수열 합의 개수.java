@@ -1,17 +1,15 @@
 import java.util.*;
 
 class Solution {
-    public int solution(int[] elements) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int i=0; i < elements.length; i++) {
-            int sum = 0;
-            int idx = i;
-            for (int j=0; j < elements.length; j++) {
-                sum += elements[idx];
-                set.add(sum);
-                idx = (idx+1) % elements.length;
+        public int solution(int[] elements) {
+            Set<Integer> set = new HashSet<>();
+            int[] dp = new int[elements.length];
+            for(int len = 1;len <= elements.length; len++){
+                for(int i = 0;i<elements.length;i++){
+                    dp[i] += elements[(len+i-1)%elements.length];
+                    set.add(dp[i]);
+                }
             }
+            return set.size();
         }
-        return set.size();
     }
-}
