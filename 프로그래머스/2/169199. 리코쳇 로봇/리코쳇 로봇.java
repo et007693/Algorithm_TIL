@@ -1,4 +1,3 @@
-// 한 칸 이동하기 전에, 검사하는 로직으로 작성하기
 import java.util.*;
 
 class Solution {
@@ -18,7 +17,6 @@ class Solution {
             for (int x=0; x < lenX; x++) {
                 if (map[y][x] == 'R') {
                     q.add(new int[]{x, y});
-                    visited[y][x] = 1;
                 }
             }
         }
@@ -28,27 +26,33 @@ class Solution {
             int x = current[0];
             int y = current[1];
             
+            // System.out.print(""+x+y);
             for (int[] d : direction) {
-                int dx = x;
-                int dy = y;
-                
+                int nx = x + d[0];
+                int ny = y + d[1]; 
                 while(true) {
-                    int nx = dx + d[0];
-                    int ny = dy + d[1]; 
-                    if (nx < 0 || nx >= lenX || ny < 0 || ny >= lenY || map[ny][nx] == 'D') {
+                    if (nx < 0 || nx >= lenX || ny < 0 || ny >= lenY) {
                         break;
                     }
-                    dx = nx;
-                    dy = ny;
-                }
-                if (visited[dy][dx] == 0) {
-                    visited[dy][dx] = visited[y][x] + 1;
-                    if (map[dy][dx] == 'G') {
-                        return visited[dy][dx]-1;
+                    visited[ny][nx] = visited[y][x] + 1;
+                    if (map[ny][nx] == 'G') {
+                        return visited[ny][nx];
+                    } else if (
+                        map[ny][nx] == 'D' ||
+                        nx == 0 || ny == 0 ||
+                        nx == lenX-1 || ny == lenY-1
+                    ) {
+                        q.add(new int[]{nx, ny});
+                        break;
                     }
-                    q.add(new int[]{dx, dy});
+                    nx += d[0];
+                    ny += d[1];
                 }
-            }        
+            }
+            for (int[] visit:visited) {
+                System.out.println(Arrays.toString(visit));
+            }
+            
         }
         return answer;
     }
