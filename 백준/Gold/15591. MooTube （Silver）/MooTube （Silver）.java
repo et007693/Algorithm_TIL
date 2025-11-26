@@ -14,50 +14,49 @@ public class Main {
             this.w = w;
         }
     }
-    static int N, Q;
-    static ArrayList<Edge>[] graph;
-    
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        Q = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int Q = Integer.parseInt(st.nextToken());
 
-        graph = new ArrayList[N+1];
+        ArrayList<Edge>[] graph = new ArrayList[N+1];
         for (int i = 1; i <= N; i++) graph[i] = new ArrayList<>();
 
-        for (int i = 0; i < N - 1; i++) {
+        for (int i = 0; i < N-1; i++) {
             st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
+            int p = Integer.parseInt(st.nextToken());
+            int q = Integer.parseInt(st.nextToken());
             int r = Integer.parseInt(st.nextToken());
-            graph[a].add(new Edge(b, r));
-            graph[b].add(new Edge(a, r));
+
+            graph[p].add(new Edge(q, r));
+            graph[q].add(new Edge(p, r));
         }
 
-        for (int qu = 0; qu < Q; qu++) {
+        for (int qi = 0; qi < Q; qi++) {
             st = new StringTokenizer(br.readLine());
-            int K = Integer.parseInt(st.nextToken());
-            int V = Integer.parseInt(st.nextToken());
+            int k = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
 
             boolean[] visited = new boolean[N+1];
             Queue<Integer> q = new LinkedList<>();
-            visited[V] = true;
-            q.offer(V);
+            q.offer(v);
+            visited[v] = true;
 
-            int count = 0;
+            int cnt = 0;
             while (!q.isEmpty()) {
                 int cur = q.poll();
                 for (Edge e : graph[cur]) {
-                    if (!visited[e.to] && e.w >= K) {
+                    if (!visited[e.to] && e.w >= k) {
                         visited[e.to] = true;
                         q.offer(e.to);
-                        count++;
+                        cnt++;
                     }
                 }
             }
-            System.out.println(count);
+            System.out.println(cnt);
         }
     }
 }
